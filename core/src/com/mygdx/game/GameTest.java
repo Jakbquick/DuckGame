@@ -120,13 +120,13 @@ public class GameTest extends ApplicationAdapter {
             duck.x = 0;
         }
         if (duck.x < 0) {
-            duck.x = Gdx.graphics.getWidth() - SNAKE_MOVEMENT;
+            duck.x = Gdx.graphics.getWidth();
         }
         if (duck.y >= Gdx.graphics.getHeight()) {
             duck.y = 0;
         }
         if (duck.y < 0) {
-            duck.y = Gdx.graphics.getHeight() - SNAKE_MOVEMENT;
+            duck.y = Gdx.graphics.getHeight();
         }
     }
     @Override
