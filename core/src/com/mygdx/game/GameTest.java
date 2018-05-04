@@ -68,7 +68,7 @@ public class GameTest extends ApplicationAdapter {
             timer = COOLDOWN_TIME;
             canDash = true;
         }
-
+        checkForOutOfBounds();
         // whatever this means i think it renders stuff
         Gdx.gl.glClearColor(0, 0, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -101,12 +101,6 @@ public class GameTest extends ApplicationAdapter {
             //duck.y -= 600 * Gdx.graphics.getDeltaTime();
             lastDirection += 'D';
         }
-        if(duck.y + ySpeed * Gdx.graphics.getDeltaTime() < (1080 - 64) * 4 && duck.y + ySpeed * Gdx.graphics.getDeltaTime() > 0) {
-            duck.y += ySpeed * Gdx.graphics.getDeltaTime();
-        }
-        if(duck.x + xSpeed * Gdx.graphics.getDeltaTime() < (1920 - 64) * 4 && duck.x + xSpeed * Gdx.graphics.getDeltaTime() > 0) {
-            duck.x += xSpeed * Gdx.graphics.getDeltaTime();
-        }
         ySpeed *= acceleration;
         xSpeed *= acceleration;
 
@@ -121,7 +115,20 @@ public class GameTest extends ApplicationAdapter {
         }
 
     }
-
+    private void checkForOutOfBounds() {
+        if (duck.x >= Gdx.graphics.getWidth()) {
+            duck.x = 0;
+        }
+        if (duck.x < 0) {
+            duck.x = Gdx.graphics.getWidth() - SNAKE_MOVEMENT;
+        }
+        if (duck.y >= Gdx.graphics.getHeight()) {
+            duck.y = 0;
+        }
+        if (duck.y < 0) {
+            duck.y = Gdx.graphics.getHeight() - SNAKE_MOVEMENT;
+        }
+    }
     @Override
     public void dispose () {
         // gets rid of stuff?
